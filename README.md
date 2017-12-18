@@ -12,9 +12,9 @@ Create Python `virtualenv`:
 virtualenv venv -p python3
 source venv/bin/activate
 ```
-Install `Androguard`:
+Install dependencies:
 ```
-pip install git+https://github.com/androguard/androguard.git
+pip install -r requirements.txt
 ```
 
 ## Analyze an APK file
