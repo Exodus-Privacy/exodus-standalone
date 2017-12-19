@@ -14,7 +14,7 @@ source venv/bin/activate
 ```
 Install dependencies:
 ```
-pip install -r requirements.txt
+pip install git+https://github.com/androguard/androguard.git
 ```
 
 ## Analyze an APK file
