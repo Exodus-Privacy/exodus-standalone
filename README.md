@@ -21,7 +21,7 @@ pip install -r requirements.txt
 ```
 python exodus_analyze.py my_apk.apk
 ```
-be sure to active the Python `virtualenv` before running `exodus_analyze.py`.
+be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
 ## Example of output
 ```
@@ -68,9 +68,9 @@ Run
 ```
 python exodus_download.py /api/report/15/ /tmp/
 ```
-be sure to active the Python `virtualenv` before running `exodus_analyze.py`.
+be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
-## Example of ouput
+## Example of output
 ```
 python exodus_download.py /api/report/15/ /tmp/                                                                                             1 ↵
 Downloading the APK ...
