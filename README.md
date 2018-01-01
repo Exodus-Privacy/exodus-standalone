@@ -17,11 +17,11 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-## Analyze an APK file
+# Analyze an APK file
 ```
-python exodus.py my_apk.apk
+python exodus_analyze.py my_apk.apk
 ```
-be sure to active the Python `virtualenv` before running `exodus.py`.
+be sure to active the Python `virtualenv` before running `exodus_analyze.py`.
 
 ## Example of output
 ```
@@ -50,4 +50,30 @@ decoding the apk
  - Google Analytics
  - Google Ads
  - Google DoubleClick
+```
+
+## Pitfalls
+This tool uses `dexdump` and only provides `GNU/Linux x86_64` version of it.
+
+# Download an APK from εxodus instance
+Create `config.py` file in the project directory specifying:
+```
+CONFIG = {
+    'username': 'alice',
+    'password': 'bob',
+    'host': 'http://localhost:8000'
+}
+```
+Run
+```
+python exodus_download.py /api/report/15/ /tmp/
+```
+be sure to active the Python `virtualenv` before running `exodus_analyze.py`.
+
+## Example of ouput
+```
+python exodus_download.py /api/report/15/ /tmp/                                                                                             1 ↵
+Downloading the APK ...
+Your APK have been successfully downloaded: /tmp/fr.meteo.apk
+
 ```
