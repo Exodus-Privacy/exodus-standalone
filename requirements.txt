@@ -1,1 +1,1 @@
-git+https://github.com/Exodus-Privacy/exodus-core.git
+https://github.com/Exodus-Privacy/exodus-core/releases/download/v1.0.1/exodus_core-1.0.1.tar.gz

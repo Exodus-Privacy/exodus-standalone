@@ -75,5 +75,4 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 python exodus_download.py /api/report/15/ /tmp/                                                                                             1 ↵
 Downloading the APK ...
 Your APK have been successfully downloaded: /tmp/fr.meteo.apk
-
 ```
