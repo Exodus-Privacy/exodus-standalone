@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     mode = 1
     if options.json_mode:
-        output = '%s.json' % options.output
+        output = '%s.json' % options.output_file
         mode = 2
 
     apk_file = args[0]
