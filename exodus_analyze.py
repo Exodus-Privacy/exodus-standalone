@@ -11,9 +11,10 @@ class AnalysisHelper(StaticAnalysis):
                 'handle': self.get_package(),
                 'version_name': self.get_version(),
                 'version_code': self.get_version_code(),
+                'uaid': self.get_application_universal_id(),
                 'name': self.get_app_name(),
                 'permissions': self.get_permissions(),
-                'libraries': self.get_libraries()
+                'libraries': self.get_libraries(),
             },
             'apk': {
                 'path': self.apk_path,
