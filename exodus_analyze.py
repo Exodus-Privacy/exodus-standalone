@@ -1,4 +1,5 @@
 import json
+import sys
 import optparse
 
 from exodus_core.analysis.static_analysis import StaticAnalysis
@@ -65,3 +66,4 @@ if __name__ == '__main__':
                 out.writelines(report)
         else:
             print(report)
+    sys.exit(len(analysis.detect_trackers()))
