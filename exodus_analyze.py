@@ -13,7 +13,6 @@ class AnalysisHelper(StaticAnalysis):
                 'version_name': self.get_version(),
                 'version_code': self.get_version_code(),
                 'uaid': self.get_application_universal_id(),
-                'icon_phash': self.get_icon_phash(),
                 'name': self.get_app_name(),
                 'permissions': self.get_permissions(),
                 'libraries': [l.decode('utf-8') for l in self.get_libraries()],
