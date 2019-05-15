@@ -1,7 +1,7 @@
 # εxodus standalone
 εxodus CLI client for local APK static analysis.
 
-## Installation 
+## Installation
 Clone this repository:
 ```
 git clone https://github.com/Exodus-Privacy/exodus-standalone.git
@@ -31,13 +31,13 @@ token=~/.cache/gplaycli/token
 locale=en_US
 timezone=CEST
 ```
-
 Create Python `virtualenv`:
 ```
+sudo apt-get install virtualenv
 virtualenv venv -p python3
 source venv/bin/activate
 ```
-Install dependencies:
+Download and install dependencies:
 ```
 pip install -r requirements.txt
 ```
