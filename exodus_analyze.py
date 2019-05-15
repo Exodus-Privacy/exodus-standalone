@@ -15,7 +15,7 @@ class AnalysisHelper(StaticAnalysis):
                 'uaid': self.get_application_universal_id(),
                 'name': self.get_app_name(),
                 'permissions': self.get_permissions(),
-                'libraries': [l.decode('utf-8') for l in self.get_libraries()],
+                'libraries': [l for l in self.get_libraries()],
             },
             'apk': {
                 'path': self.apk_path,
