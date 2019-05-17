@@ -1,6 +1,12 @@
 # εxodus standalone
 εxodus CLI client for local APK static analysis.
 
+## Table of contents
+
+- [**Installation**](#installation)
+- [**Analyze an APK file**](#analyze-an-apk-file)
+- [**Download an APK from an εxodus instance**](#download-an-apk-from-an-εxodus-instance)
+
 ## Installation
 Clone this repository:
 ```
@@ -13,6 +19,7 @@ sudo apt-get install dexdump
 ```
 Create a `gplaycli` configuration file:
 ```
+mkdir ~/.config/gplaycli
 nano ~/.config/gplaycli/gplaycli.conf
 ```
 containing
@@ -42,9 +49,9 @@ Download and install dependencies:
 pip install -r requirements.txt
 ```
 
-# Analyze an APK file
+## Analyze an APK file
 
-## Usage
+### Usage
 ```
 $ python exodus_analyze.py -h
 Usage: exodus_analyze.py [options] apk_file
@@ -57,13 +64,13 @@ Options:
                         store JSON report in file (requires -j option)
 ```
 
-## Text output
+### Text output
 ```
 python exodus_analyze.py my_apk.apk
 ```
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
-### Example of text output
+#### Example
 ```
 === Informations
 - APK path: /tmp/tmp1gzosyt4/com.semitan.tan.apk
@@ -89,13 +96,13 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
  - Google DoubleClick
 ```
 
-## JSON output
+### JSON output
 ```
 python exodus_analyze.py -j [-o report.json] my_apk.apk
 ```
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
-### Example of text output
+#### Example
 ```json
 {
   "trackers": [
@@ -129,10 +136,10 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 }
 ```
 
-## Pitfalls
+### Pitfalls
 This tool uses `dexdump` and only provides `GNU/Linux x86_64` version of it.
 
-# Download an APK from an εxodus instance
+## Download an APK from an εxodus instance
 Create `config.py` file in the project directory specifying:
 ```
 CONFIG = {
@@ -145,9 +152,9 @@ Run
 ```
 python exodus_download.py /api/report/15/ /tmp/
 ```
-be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
+be sure to activate the Python `virtualenv` before running `exodus_download.py`.
 
-## Example of output
+### Example of output
 ```
 python exodus_download.py /api/report/15/ /tmp/                                                                                             1 ↵
 Downloading the APK ...
