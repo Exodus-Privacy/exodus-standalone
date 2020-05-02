@@ -142,13 +142,14 @@ CONFIG = {
 ```
 Run
 ```
-python exodus_download.py /api/report/15/ /tmp/
+python exodus_download.py 15 /tmp/
 ```
 be sure to activate the Python `virtualenv` before running `exodus_download.py`.
 
 #### Example of output
 ```
-python exodus_download.py /api/report/15/ /tmp/                                                                                             1 ↵
+python exodus_download.py 15 /tmp/
+Successfully logged in
 Downloading the APK ...
-Your APK have been successfully downloaded: /tmp/fr.meteo.apk
+APK successfully downloaded: /tmp/fr.meteo.apk
 ```

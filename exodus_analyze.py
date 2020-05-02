@@ -27,7 +27,7 @@ class AnalysisHelper(StaticAnalysis):
         }
 
 
-if __name__ == '__main__':
+def main():
     parser = optparse.OptionParser('usage: %prog [options] apk_file')
     parser.add_option(
         '-t', '--text',
@@ -54,23 +54,25 @@ if __name__ == '__main__':
 
     if len(args) != 1:
         parser.error('incorrect number of arguments')
-
-    mode = 1
-    if options.json_mode:
-        mode = 2
+        sys.exit(1)
 
     apk_file = args[0]
 
     analysis = AnalysisHelper(apk_file)
     analysis.load_trackers_signatures()
-    if mode == 1:
-        analysis.print_apk_infos()
-        analysis.print_embedded_trackers()
-    else:
+    if options.json_mode:
         report = json.dumps(analysis.create_json_report(), indent=2)
-        if options.output_file is not None:
+        if options.output_file:
             with open(options.output_file, 'w') as out:
                 out.writelines(report)
         else:
             print(report)
+    else:
+        analysis.print_apk_infos()
+        analysis.print_embedded_trackers()
+
     sys.exit(len(analysis.detect_trackers()))
+
+
+if __name__ == '__main__':
+    main()

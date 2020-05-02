@@ -1,1 +1,6 @@
 venv
+.vscode
+__pycache__
+
+apks
+config.py
