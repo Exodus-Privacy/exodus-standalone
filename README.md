@@ -1,4 +1,6 @@
 # εxodus standalone
+[![Build Status](https://travis-ci.org/Exodus-Privacy/exodus-standalone.svg?branch=v1)](https://travis-ci.org/Exodus-Privacy/exodus-standalone)
+
 εxodus CLI client for local APK static analysis.
 
 ## Summary
