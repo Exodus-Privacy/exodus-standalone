@@ -1,4 +1,5 @@
 # εxodus standalone
+
 [![Build Status](https://travis-ci.org/Exodus-Privacy/exodus-standalone.svg?branch=v1)](https://travis-ci.org/Exodus-Privacy/exodus-standalone)
 
 εxodus CLI client for local APK static analysis.
@@ -16,37 +17,47 @@
 The easiest way to analyze an APK is to use [our Docker image](https://hub.docker.com/r/exodusprivacy/exodus-standalone).
 
 Simply go to the directory where the APK file is and run:
-```
+
+```bash
 docker run -v $(pwd)/<your apk file>:/app.apk --rm -i exodusprivacy/exodus-standalone
 ```
 
 ## Manual usage
 
 ### Installation
+
 Clone this repository:
-```
+
+```bash
 git clone https://github.com/Exodus-Privacy/exodus-standalone.git
 cd exodus-standalone
 ```
+
 Install `dexdump`:
-```
+
+```bash
 sudo apt-get install dexdump
 ```
+
 Create Python `virtualenv`:
-```
+
+```bash
 sudo apt-get install virtualenv
 virtualenv venv -p python3
 source venv/bin/activate
 ```
+
 Download and install dependencies:
-```
+
+```bash
 pip install -r requirements.txt
 ```
 
 ### Analyze an APK file
 
 #### Usage
-```
+
+```bash
 $ python exodus_analyze.py -h
 Usage: exodus_analyze.py [options] apk_file
 
@@ -59,13 +70,16 @@ Options:
 ```
 
 #### Text output
-```
+
+```bash
 python exodus_analyze.py my_apk.apk
 ```
+
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
 *Example:*
-```
+
+```bash
 === Informations
 - APK path: /tmp/tmp1gzosyt4/com.semitan.tan.apk
 - APK sum: 8e85737be6911ea817b3b9f6a80290b85befe24ff5f57dc38996874dfde13ba7
@@ -91,12 +105,15 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 ```
 
 #### JSON output
-```
+
+```bash
 python exodus_analyze.py -j [-o report.json] my_apk.apk
 ```
+
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 
 *Example:*
+
 ```json
 {
   "trackers": [
@@ -131,25 +148,32 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 ```
 
 #### Pitfalls
+
 This tool uses `dexdump` and only provides `GNU/Linux x86_64` version of it.
 
 ### Download an APK from an εxodus instance
+
 Create `config.py` file in the project directory specifying:
-```
+
+```bash
 CONFIG = {
     'username': 'alice',
     'password': 'bob',
     'host': 'http://localhost:8000'
 }
 ```
+
 Run
-```
+
+```bash
 python exodus_download.py 15 /tmp/
 ```
+
 be sure to activate the Python `virtualenv` before running `exodus_download.py`.
 
 #### Example of output
-```
+
+```bash
 python exodus_download.py 15 /tmp/
 Successfully logged in
 Downloading the APK ...
