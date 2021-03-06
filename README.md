@@ -11,6 +11,7 @@
   - [**Installation**](#installation)
   - [**Analyze an APK file**](#analyze-an-apk-file)
   - [**Download an APK from an εxodus instance**](#download-an-apk-from-an-εxodus-instance)
+- [**Continuous Integration**](#continuous-integration)
 
 ## Using Docker
 
@@ -178,4 +179,23 @@ python exodus_download.py 15 /tmp/
 Successfully logged in
 Downloading the APK ...
 APK successfully downloaded: /tmp/fr.meteo.apk
+```
+
+## Continuous Integration
+
+You can use εxodus-standalone in your CI pipelines.
+
+Below are listed some examples of how to integrate it.
+
+:warning: Please note that the task will fail if it finds **any tracker**.
+
+### GitLab CI/CD
+
+```yml
+stage: audit
+  image:
+    name: exodusprivacy/exodus-standalone:latest
+    entrypoint: [""]
+  script:
+    - python /exodus_analyze.py [YOUR_APK_PATH]
 ```
