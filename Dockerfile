@@ -6,6 +6,6 @@ RUN apt-get update \
 
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 ENTRYPOINT ["python", "exodus_analyze.py", "app.apk"]
