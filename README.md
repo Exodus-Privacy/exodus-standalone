@@ -192,7 +192,8 @@ Below are listed some examples of how to integrate it.
 ### GitLab CI/CD
 
 ```yml
-stage: audit
+exodus_scan:
+  stage: audit
   image:
     name: exodusprivacy/exodus-standalone:latest
     entrypoint: [""]
