@@ -1,17 +1,12 @@
+import argparse
 import config
 import sys
 
 from exodus_core.helper.connector import ExodusConnector
 
 
-def main():
-    if len(sys.argv) != 3:
-        print('Usage:')
-        print('python exodus_download.py <report id> <destination folder>')
-        sys.exit(1)
-
-    uri = '/api/report/{}/'.format(sys.argv[1])
-    destination = sys.argv[2]
+def download_apk(report_id, destination):
+    uri = '/api/report/{}/'.format(report_id)
 
     try:
         ec = ExodusConnector(config.CONFIG['host'], uri)
@@ -24,6 +19,15 @@ def main():
     except Exception as e:
         print('ERROR: {}'.format(e))
         sys.exit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('report_id', type=int, help='the report of the app to download')
+    parser.add_argument('destination', help='the destination folder')
+
+    args = parser.parse_args()
+    download_apk(args.report_id, args.destination)
 
 
 if __name__ == '__main__':
