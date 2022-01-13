@@ -1,5 +1,5 @@
+import argparse
 import json
-import optparse
 import sys
 
 from exodus_core.analysis.static_analysis import StaticAnalysis
@@ -27,43 +27,13 @@ class AnalysisHelper(StaticAnalysis):
         }
 
 
-def main():
-    parser = optparse.OptionParser('usage: %prog [options] apk_file')
-    parser.add_option(
-        '-t', '--text',
-        dest='text_mode',
-        action='store_true',
-        default=True,
-        help='print textual report (default)'
-    )
-    parser.add_option(
-        '-j', '--json',
-        dest='json_mode',
-        action='store_true',
-        default=False,
-        help='print JSON report'
-    )
-    parser.add_option(
-        '-o', '--output',
-        dest='output_file',
-        default=None,
-        help='store JSON report in file (requires -j option)'
-    )
-
-    (options, args) = parser.parse_args()
-
-    if len(args) != 1:
-        parser.error('incorrect number of arguments')
-        sys.exit(1)
-
-    apk_file = args[0]
-
-    analysis = AnalysisHelper(apk_file)
+def analyze_apk(apk, json_mode, output_file):
+    analysis = AnalysisHelper(apk)
     analysis.load_trackers_signatures()
-    if options.json_mode:
+    if json_mode:
         report = json.dumps(analysis.create_json_report(), indent=2)
-        if options.output_file:
-            with open(options.output_file, 'w') as out:
+        if output_file:
+            with open(output_file, 'w') as out:
                 out.writelines(report)
         else:
             print(report)
@@ -72,6 +42,34 @@ def main():
         analysis.print_embedded_trackers()
 
     sys.exit(len(analysis.detect_trackers()))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('apk', help='the apk file to analyse')
+    parser.add_argument(
+        '-t', '--text',
+        dest='text_mode',
+        action='store_true',
+        default=True,
+        help='print textual report (default)'
+    )
+    parser.add_argument(
+        '-j', '--json',
+        dest='json_mode',
+        action='store_true',
+        default=False,
+        help='print JSON report'
+    )
+    parser.add_argument(
+        '-o', '--output',
+        dest='output_file',
+        default=None,
+        help='store JSON report in file (requires -j option)'
+    )
+
+    args = parser.parse_args()
+    analyze_apk(args.apk, args.json_mode, args.output_file)
 
 
 if __name__ == '__main__':
