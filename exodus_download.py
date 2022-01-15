@@ -1,5 +1,6 @@
 import argparse
 import config
+import os.path
 import sys
 
 from exodus_core.helper.connector import ExodusConnector
@@ -27,6 +28,11 @@ def main():
     parser.add_argument('destination', help='the destination folder')
 
     args = parser.parse_args()
+    if not os.path.isdir(args.destination):
+        print('ERROR: destination argument needs to be a directory')
+        parser.print_help()
+        sys.exit(1)
+
     download_apk(args.report_id, args.destination)
 
 

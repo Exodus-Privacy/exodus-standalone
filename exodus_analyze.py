@@ -1,5 +1,6 @@
 import argparse
 import json
+import os.path
 import sys
 
 from exodus_core.analysis.static_analysis import StaticAnalysis
@@ -25,6 +26,16 @@ class AnalysisHelper(StaticAnalysis):
                 {'name': t.name, 'id': t.id} for t in self.detect_trackers()
             ],
         }
+
+
+def validate_arguments(args):
+    if not os.path.isfile(args.apk):
+        return 'apk file should exist'
+
+    if args.output_file and not args.json_mode:
+        return 'output_file option requires JSON mode'
+
+    return ''
 
 
 def analyze_apk(apk, json_mode, output_file):
@@ -69,6 +80,13 @@ def main():
     )
 
     args = parser.parse_args()
+    error_msg = validate_arguments(args)
+
+    if error_msg:
+        print('ERROR: {}'.format(error_msg))
+        parser.print_help()
+        sys.exit(1)
+
     analyze_apk(args.apk, args.json_mode, args.output_file)
 
 
