@@ -59,7 +59,7 @@ pip install -r requirements.txt
 #### Usage
 
 ```bash
-$ python exodus_analyze.py -h
+$ ./exodus_analyze.py -h
 Usage: exodus_analyze.py [options] apk_file
 
 Options:
@@ -73,7 +73,7 @@ Options:
 #### Text output
 
 ```bash
-python exodus_analyze.py my_apk.apk
+./exodus_analyze.py my_apk.apk
 ```
 
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
@@ -108,7 +108,7 @@ be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
 #### JSON output
 
 ```bash
-python exodus_analyze.py -j [-o report.json] my_apk.apk
+./exodus_analyze.py -j [-o report.json] my_apk.apk
 ```
 
 be sure to activate the Python `virtualenv` before running `exodus_analyze.py`.
@@ -167,7 +167,7 @@ CONFIG = {
 Run
 
 ```bash
-python exodus_download.py 15 /tmp/
+./exodus_download.py 15 /tmp/
 ```
 
 be sure to activate the Python `virtualenv` before running `exodus_download.py`.
@@ -175,7 +175,7 @@ be sure to activate the Python `virtualenv` before running `exodus_download.py`.
 #### Example of output
 
 ```bash
-python exodus_download.py 15 /tmp/
+./exodus_download.py 15 /tmp/
 Successfully logged in
 Downloading the APK ...
 APK successfully downloaded: /tmp/fr.meteo.apk
