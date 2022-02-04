@@ -40,7 +40,19 @@ def validate_arguments(args):
     return ''
 
 
-def analyze_apk(apk, json_mode, output_file):
+def get_ignore_list(ignore_arg):
+    ignored = []
+
+    if ignore_arg:
+        try:
+            ignored = [int(id) for id in ignore_arg.split(',')]
+        except Exception:
+            return [], 'incorrect ignore argument'
+
+    return ignored, ''
+
+
+def analyze_apk(apk, json_mode, output_file, ignore_list):
     analysis = AnalysisHelper(apk)
     analysis.load_trackers_signatures()
     if json_mode:
@@ -54,7 +66,14 @@ def analyze_apk(apk, json_mode, output_file):
         analysis.print_apk_infos()
         analysis.print_embedded_trackers()
 
-    sys.exit(len(analysis.detect_trackers()))
+    trackers_not_ignored = [t for t in analysis.detect_trackers() if t.id not in ignore_list]
+    sys.exit(len(trackers_not_ignored))
+
+
+def raise_error(parser, error_msg):
+    print('ERROR: {}'.format(error_msg))
+    parser.print_help()
+    sys.exit(1)
 
 
 def main():
@@ -80,16 +99,25 @@ def main():
         default=None,
         help='store JSON report in file (requires -j option)'
     )
+    parser.add_argument(
+        '-i', '--ignore',
+        dest='ignore',
+        default=None,
+        help='comma-separated ids of trackers to ignore'
+    )
 
     args = parser.parse_args()
-    error_msg = validate_arguments(args)
+    args_error = validate_arguments(args)
 
-    if error_msg:
-        print('ERROR: {}'.format(error_msg))
-        parser.print_help()
-        sys.exit(1)
+    if args_error:
+        raise_error(parser, args_error)
 
-    analyze_apk(args.apk, args.json_mode, args.output_file)
+    ignore_list, ignore_error = get_ignore_list(args.ignore)
+
+    if ignore_error:
+        raise_error(parser, ignore_error)
+
+    analyze_apk(args.apk, args.json_mode, args.output_file, ignore_list)
 
 
 if __name__ == '__main__':
