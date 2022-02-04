@@ -28,6 +28,9 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8
+      - name: Run tests
+        run: |
+          python -m unittest
       - uses: hadolint/hadolint-action@v1.5.0
         with:
           dockerfile: Dockerfile
