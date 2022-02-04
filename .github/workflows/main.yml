@@ -30,6 +30,8 @@ jobs:
           flake8
       - name: Run tests
         run: |
+          sudo apt-get install -y --no-install-recommends dexdump  # required to install exodus-core
+          pip install -r requirements.txt
           python -m unittest
       - uses: hadolint/hadolint-action@v1.5.0
         with:
