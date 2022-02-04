@@ -40,6 +40,12 @@ def validate_arguments(args):
     return ''
 
 
+def raise_error(parser, error_msg):
+    print('ERROR: {}'.format(error_msg))
+    parser.print_help()
+    sys.exit(1)
+
+
 def get_ignore_list(ignore_arg):
     ignored = []
 
@@ -68,12 +74,6 @@ def analyze_apk(apk, json_mode, output_file, ignore_list):
 
     trackers_not_ignored = [t for t in analysis.detect_trackers() if t.id not in ignore_list]
     sys.exit(len(trackers_not_ignored))
-
-
-def raise_error(parser, error_msg):
-    print('ERROR: {}'.format(error_msg))
-    parser.print_help()
-    sys.exit(1)
 
 
 def main():
