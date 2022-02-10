@@ -59,15 +59,20 @@ pip install -r requirements.txt
 #### Usage
 
 ```bash
-$ ./exodus_analyze.py -h
-Usage: exodus_analyze.py [options] apk_file
+$ ./exodus_analyze.py --help
+usage: exodus_analyze.py [-h] [-t] [-j] [-o OUTPUT_FILE] [-i IGNORE] apk
 
-Options:
+positional arguments:
+  apk                   the apk file to analyse
+
+optional arguments:
   -h, --help            show this help message and exit
   -t, --text            print textual report (default)
   -j, --json            print JSON report
-  -o OUTPUT_FILE, --output=OUTPUT_FILE
+  -o OUTPUT_FILE, --output OUTPUT_FILE
                         store JSON report in file (requires -j option)
+  -i IGNORE, --ignore IGNORE
+                        comma-separated ids of trackers to ignore
 ```
 
 #### Text output
@@ -154,6 +159,8 @@ This tool uses `dexdump` and only provides `GNU/Linux x86_64` version of it.
 
 ### Download an APK from an εxodus instance
 
+#### Configuration
+
 Create `config.py` file in the project directory specifying:
 
 ```bash
@@ -164,10 +171,19 @@ CONFIG = {
 }
 ```
 
-Run
+#### Usage
 
 ```bash
-./exodus_download.py 15 /tmp/
+$ ./exodus_download.py --help
+usage: exodus_download.py [-h] report_id destination
+
+positional arguments:
+  report_id    the report of the app to download
+  destination  the destination folder
+
+optional arguments:
+  -h, --help   show this help message and exit
+
 ```
 
 be sure to activate the Python `virtualenv` before running `exodus_download.py`.
@@ -186,8 +202,6 @@ APK successfully downloaded: /tmp/fr.meteo.apk
 You can use εxodus-standalone in your CI pipelines.
 
 Below are listed some examples of how to integrate it.
-
-:warning: Please note that the task will fail if it finds **any tracker**.
 
 ### GitLab CI/CD
 
