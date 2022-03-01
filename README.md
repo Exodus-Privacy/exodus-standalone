@@ -12,6 +12,8 @@
   - [**Analyze an APK file**](#analyze-an-apk-file)
   - [**Download an APK from an εxodus instance**](#download-an-apk-from-an-εxodus-instance)
 - [**Continuous Integration**](#continuous-integration)
+  - [**GitLab CI/CD**](#gitlab-cicd)
+  - [**GitHub Actions**](#github-actions)
 
 ## Using Docker
 
@@ -20,7 +22,7 @@ The easiest way to analyze an APK is to use [our Docker image](https://hub.docke
 Simply go to the directory where the APK file is and run:
 
 ```bash
-docker run -v $(pwd)/<your apk file>:/app.apk --rm -i exodusprivacy/exodus-standalone
+docker run -v $(pwd):/app --rm -i exodusprivacy/exodus-standalone /app/<your apk file>
 ```
 
 ## Manual usage
@@ -212,5 +214,15 @@ exodus_scan:
     name: exodusprivacy/exodus-standalone:latest
     entrypoint: [""]
   script:
-    - python /exodus_analyze.py [YOUR_APK_PATH]
+    - /exodus_analyze.py [YOUR_APK_PATH]
+```
+
+### GitHub Actions
+
+```yml
+steps:
+  - name: Execute exodus-standalone
+    uses: docker://exodusprivacy/exodus-standalone:latest
+    with:
+      args: /github/workspace/[YOUR_APK_PATH]
 ```
