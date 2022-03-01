@@ -5,8 +5,11 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
-COPY . .
+COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["python", "exodus_analyze.py", "app.apk"]
+COPY exodus_analyze.py .
+
+ENTRYPOINT ["/exodus_analyze.py"]
+CMD ["app.apk"]
