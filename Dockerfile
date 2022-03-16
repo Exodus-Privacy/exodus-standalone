@@ -1,7 +1,7 @@
-FROM python:3.7-slim-buster
+FROM python:3.9-slim-bullseye
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends dexdump=8.1.0+r23-3 \
+ && apt-get install -y --no-install-recommends dexdump=10.0* \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
