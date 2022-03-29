@@ -54,7 +54,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: user/app:latest
+          tags: exodusprivacy/exodus-standalone:latest
 
   build_tag_image:
     needs: build
@@ -74,4 +74,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: user/app:${{ github.ref }}
+          tags: exodusprivacy/exodus-standalone:${{ github.ref }}
