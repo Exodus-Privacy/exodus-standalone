@@ -58,7 +58,7 @@ jobs:
           tags: exodusprivacy/exodus-standalone:latest
       - name: Build and push tag image
         if: github.ref_type == 'tag'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           push: true
           tags: exodusprivacy/exodus-standalone:${{ github.ref_name }}
