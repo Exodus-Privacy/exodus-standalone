@@ -58,7 +58,7 @@ def get_ignore_list(ignore_arg):
     return ignored, ''
 
 
-def analyze_apk(apk, json_mode, output_file, ignore_list):
+def analyze_apk(apk, json_mode, output_file, no_counter, ignore_list):
     analysis = AnalysisHelper(apk)
     analysis.load_trackers_signatures()
     if json_mode:
@@ -72,6 +72,8 @@ def analyze_apk(apk, json_mode, output_file, ignore_list):
         analysis.print_apk_infos()
         analysis.print_embedded_trackers()
 
+    if no_counter:
+        return
     trackers_not_ignored = [t for t in analysis.detect_trackers() if t.id not in ignore_list]
     sys.exit(len(trackers_not_ignored))
 
@@ -105,6 +107,13 @@ def main():
         default=None,
         help='comma-separated ids of trackers to ignore'
     )
+    parser.add_argument(
+        '--no-exit-counter',
+        dest='no_counter',
+        action='store_true',
+        default=False,
+        help='do not use exit code as trackers counter'
+    )
 
     args = parser.parse_args()
     args_error = validate_arguments(args)
@@ -117,7 +126,7 @@ def main():
     if ignore_error:
         raise_error(parser, ignore_error)
 
-    analyze_apk(args.apk, args.json_mode, args.output_file, ignore_list)
+    analyze_apk(args.apk, args.json_mode, args.output_file, args.no_counter, ignore_list)
 
 
 if __name__ == '__main__':
