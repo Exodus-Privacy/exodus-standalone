@@ -108,7 +108,7 @@ def main():
         help='comma-separated ids of trackers to ignore'
     )
     parser.add_argument(
-        '--no-exit-counter',
+        '-e', '--exit-code',
         dest='no_counter',
         action='store_true',
         default=False,
