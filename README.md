@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 ```bash
 $ ./exodus_analyze.py --help
-usage: exodus_analyze.py [-h] [-t] [-j] [-o OUTPUT_FILE] [-i IGNORE] apk
+usage: exodus_analyze.py [-h] [-t] [-j] [-o OUTPUT_FILE] [-i IGNORE] [-e CODE] apk
 
 positional arguments:
   apk                   the apk file to analyse
@@ -75,6 +75,8 @@ optional arguments:
                         store JSON report in file (requires -j option)
   -i IGNORE, --ignore IGNORE
                         comma-separated ids of trackers to ignore
+  -e CODE, --exit-code CODE
+                        use the CODE instead of trackers counter as exit code if trackers was detected
 ```
 
 #### Text output
