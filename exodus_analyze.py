@@ -127,7 +127,6 @@ def main():
     if ignore_error:
         raise_error(parser, ignore_error)
 
-
     analyze_apk(args.apk, args.json_mode, args.output_file, args.override_code, ignore_list)
 
 
