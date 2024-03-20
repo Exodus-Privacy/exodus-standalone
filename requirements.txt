@@ -1,1 +1,1 @@
-exodus-core==1.3.9
+exodus-core==1.3.12

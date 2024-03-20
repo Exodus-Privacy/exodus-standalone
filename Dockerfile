@@ -1,7 +1,7 @@
-FROM python:3.9-slim-bullseye
+FROM python:3.11-slim-bookworm
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends dexdump=10.0* \
+ && apt-get install -y --no-install-recommends dexdump=11.0* \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /
