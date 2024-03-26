@@ -22,7 +22,7 @@ The easiest way to analyze an APK is to use [our Docker image](https://hub.docke
 Simply go to the directory where the APK file is and run:
 
 ```bash
-docker run -v $(pwd):/app --rm -i exodusprivacy/exodus-standalone /app/<your apk file>
+docker run -v $(pwd)/<your apk file>:/app.apk --rm -i exodusprivacy/exodus-standalone
 ```
 
 ## Manual usage
